@@ -1,7 +1,12 @@
-/*
- * Главный файл стилей.
- * Все паршалы подключаются сюда.
- */
+.pnotify-text-with-max-height {
+  overflow-y: unset;
+}
 
-// Стили для файла с примером HTML-фрагмента
-@import './example';
+.pnotify-container {
+  width: 250px !important;
+  height: 60px !important;
+}
+
+.pnotify-pre-line {
+  font-size: 20px;
+}
