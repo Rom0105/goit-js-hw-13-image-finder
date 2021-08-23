@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image search</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
     <link href="../node_modules/@pnotify/core/dist/PNotify.css" rel="stylesheet" type="text/css" />
     <link
       href="../node_modules/@pnotify/mobile/dist/PNotifyMobile.css"
@@ -19,16 +21,23 @@
     />
   </head>
   <body>
-    <form class="search-form" id="search-form">
-      <input
-        class="input-form"
-        type="text"
-        name="query"
-        autocomplete="off"
-        placeholder="Search images..."
-      />
-    </form>
-    <ul class="gallery"></ul>
+    <div class="div-search">
+      <img src="./images/image.png" alt="search" width="400" />
+    </div>
+    <div class="div-form">
+      <form class="search-form" id="search-form">
+        <input
+          class="input-form"
+          type="text"
+          name="query"
+          autocomplete="off"
+          placeholder="Search images..."
+        />
+      </form>
+      <button class="btn">Load more</button>
+    </div>
+    <ul id="my-element-selector" class="gallery"></ul>
+    <script src="./js/go-top.js"></script>
     <script src="./index.js"></script>
   </body>
 </html>

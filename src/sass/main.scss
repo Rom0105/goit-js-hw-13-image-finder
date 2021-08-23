@@ -1,3 +1,51 @@
+body {
+  background-color: antiquewhite;
+}
+
+.div-search {
+  display: flex;
+  justify-content: center;
+  margin-top: 200px;
+}
+
+.div-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 30px;
+}
+
+.input-form {
+  width: 350px;
+  height: 50px;
+
+  font-size: 30px;
+
+  border-radius: 7px;
+
+  outline: none;
+}
+
+.input-form:hover {
+  border-color: aqua;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: 500px 500px 500px 500px 500px;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+
+  justify-content: center;
+
+  margin-top: 50px;
+
+  padding: 0;
+
+  list-style: none;
+}
+
 .pnotify-text-with-max-height {
   overflow-y: unset;
 }
@@ -9,4 +57,72 @@
 
 .pnotify-pre-line {
   font-size: 20px;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+}
+
+.photo-card {
+  overflow-y: hidden;
+  overflow-x: hidden;
+
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+  border-radius: 10px;
+
+  cursor: pointer;
+}
+
+.material-icons {
+  margin-right: 5px;
+  color: rgb(163, 163, 163);
+}
+
+.stats-item {
+  display: flex;
+  align-items: center;
+
+  color: rgb(163, 163, 163);
+}
+
+.btn {
+  width: 160px;
+  height: 40px;
+
+  margin-left: 20px;
+
+  cursor: pointer;
+
+  border-radius: 7px;
+
+  background-color: cadetblue;
+}
+
+#go-top {
+  position: fixed;
+  bottom: 25px;
+  right: 70px;
+  text-align: center;
+  cursor: pointer;
+  display: none;
+  width: 100px;
+  height: 100px;
+  background: #c0c0c0;
+  line-height: 100px;
+  border-radius: 50%;
+}
+
+#go-top:hover {
+  background: #333;
+  color: #fff;
 }
