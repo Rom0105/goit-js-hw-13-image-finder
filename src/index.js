@@ -22,6 +22,7 @@ function pixHandler(event) {
   event.preventDefault();
 
   const value = refs.input.value;
+
   if (value === '') {
     currentPage = 0;
   } else {
@@ -36,7 +37,6 @@ function pixHandler(event) {
       `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${value}&page=${currentPage}&per_page=12&key=23040897-f684e552d269990a649c2a9ea`,
     )
     .then(image => errorUsers(image))
-    .then(() => (currentPage += 1))
     .catch(error => console.error(error));
 }
 
