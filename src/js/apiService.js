@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { input, gallery } from '../js/references.js';
-import { errorUsers, handleButtonClick, loadImage, alertImage } from '../index';
+import { input, gallery } from './references.js';
+import { errorUsers, handleButtonClick, loadImage, alertImage } from './search-image.js';
 
 const BASE_URL = 'https://pixabay.com/api';
 const key = '23040897-f684e552d269990a649c2a9ea';
