@@ -1,16 +1,38 @@
-// import axios from 'axios';
+import axios from 'axios';
+import { input, gallery } from '../js/references.js';
+import { errorUsers, handleButtonClick, loadImage, alertImage } from '../index';
 
-// const BASE_URL = 'https://pixabay.com/api';
-// let currentPage = 1;
+const BASE_URL = 'https://pixabay.com/api';
+const key = '23040897-f684e552d269990a649c2a9ea';
 
-// function searchImage(value) {
-//   return axios
-//     .get(
-//       `${BASE_URL}/?image_type=photo&orientation=horizontal&q=${value}&page=${currentPage}&per_page=12&key=23040897-f684e552d269990a649c2a9ea`,
-//     )
-//     .then(image => image)
-//     .then(() => (currentPage += 1))
-//     .catch(error => console.error(error));
-// }
+let currentPage = 0;
+let loader = false;
 
-// export default searchImage;
+export default function pixHandler(event) {
+  event.preventDefault();
+
+  const value = input.value;
+  loader = true;
+
+  if (value !== '') {
+    currentPage += 1;
+  }
+
+  handleButtonClick();
+  loadImage();
+
+  axios
+    .get(
+      `${BASE_URL}/?image_type=photo&orientation=horizontal&q=${value}&page=${currentPage}&per_page=12&key=${key}`,
+    )
+    .then(image => errorUsers(image))
+    .then(() => {
+      if (value === '') {
+        loader = false;
+        gallery.innerHTML = '';
+        currentPage = 0;
+        alertImage();
+      }
+    })
+    .catch(error => console.log(error));
+}
