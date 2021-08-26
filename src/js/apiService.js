@@ -1,38 +1,26 @@
 import axios from 'axios';
-import { input, gallery } from './references.js';
-import { errorUsers, handleButtonClick, loadImage, alertImage } from './search-image.js';
+import { input } from './references.js';
+import { errorUsers, handleButtonClick } from './search-image.js';
 
 const BASE_URL = 'https://pixabay.com/api';
 const key = '23040897-f684e552d269990a649c2a9ea';
-
-let currentPage = 0;
-let loader = false;
-
+let page = 1;
+let perPage = 12;
+page += 1;
 export default function pixHandler(event) {
   event.preventDefault();
 
   const value = input.value;
-  loader = true;
-
-  if (value !== '') {
-    currentPage += 1;
-  }
+  page = 1;
 
   handleButtonClick();
-  loadImage();
 
   axios
     .get(
-      `${BASE_URL}/?image_type=photo&orientation=horizontal&q=${value}&page=${currentPage}&per_page=12&key=${key}`,
+      `${BASE_URL}/?image_type=photo&orientation=horizontal&q=${value}&page=${page}&per_page=${perPage}&key=${key}`,
     )
     .then(image => errorUsers(image))
-    .then(() => {
-      if (value === '') {
-        loader = false;
-        gallery.innerHTML = '';
-        currentPage = 0;
-        alertImage();
-      }
-    })
+    // .then(() => (page += 1))
     .catch(error => console.log(error));
+  page += 1;
 }

@@ -7,7 +7,8 @@ import 'basiclightbox/dist/basicLightbox.min.css';
 import pixHandler from './apiService.js';
 import { form, btn, gallery, element, input } from './references.js';
 
-form.addEventListener('input', debounce(pixHandler, 1000));
+form.addEventListener('submit', pixHandler);
+input.addEventListener('input', loadImage);
 btn.addEventListener('click', pixHandler);
 gallery.addEventListener('click', openModal);
 
@@ -46,6 +47,8 @@ function markup(image) {
 function loadImage() {
   if (input.value === '') {
     btn.setAttribute('disabled', 'disabled');
+    gallery.innerHTML = '';
+    alertImage();
   }
   if (input.value !== '') {
     btn.removeAttribute('disabled');
