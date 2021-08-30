@@ -72,6 +72,7 @@ function loadMore() {
     }
     if (input.value === '') {
       gallery.innerHTML = '';
+      load.style.visibility = 'hidden';
       alertImage();
     }
   });
