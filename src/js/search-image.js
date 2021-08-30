@@ -72,7 +72,7 @@ function loadMore() {
   pixHandler(input.value, state.page).then(({ data: { hits } }) => {
     gallery.insertAdjacentHTML('beforeend', card(hits));
     handleButtonClick();
-    if (state.page === 2) {
+    if (hits.length > 11) {
       observer.observe(load);
     }
     if (input.value === '') {
@@ -125,6 +125,6 @@ function loadImage() {
 function handleButtonClick() {
   element.scrollIntoView({
     behavior: 'smooth',
-    block: 'center',
+    block: 'start',
   });
 }
