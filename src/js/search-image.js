@@ -40,6 +40,11 @@ function onSearch(e) {
         delay: 2000,
       });
     }
+    if (input.value === '') {
+      gallery.innerHTML = '';
+      load.style.visibility = 'hidden';
+      alertImage();
+    }
   });
   btn.setAttribute('disabled', 'disabled');
 }
@@ -64,7 +69,7 @@ function onLoadMore() {
 
 function loadMore() {
   state.page += 1;
-  pixHandler(state.query, state.page).then(({ data: { hits } }) => {
+  pixHandler(input.value, state.page).then(({ data: { hits } }) => {
     gallery.insertAdjacentHTML('beforeend', card(hits));
     handleButtonClick();
     if (state.page === 2) {
@@ -72,7 +77,6 @@ function loadMore() {
     }
     if (input.value === '') {
       gallery.innerHTML = '';
-      load.style.visibility = 'hidden';
       alertImage();
     }
   });
@@ -110,6 +114,7 @@ function loadImage() {
   if (input.value === '') {
     btn.setAttribute('disabled', 'disabled');
     gallery.innerHTML = '';
+    load.style.visibility = 'hidden';
     alertImage();
   }
   if (input.value !== '') {
