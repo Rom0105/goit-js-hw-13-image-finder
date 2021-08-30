@@ -130,3 +130,19 @@ body {
 .is-hidden {
   display: none;
 }
+
+.load {
+  width: 160px;
+  height: 40px;
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 100px;
+  display: block;
+
+  cursor: pointer;
+
+  border-radius: 7px;
+
+  background-color: cadetblue;
+}

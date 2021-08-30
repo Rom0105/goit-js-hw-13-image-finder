@@ -1,16 +1,81 @@
 import { error, alert } from '@pnotify/core/dist/PNotify.js';
 import '@pnotify/core/dist/BrightTheme.css';
 import card from '../templates/card-image.hbs';
-import debounce from 'debounce';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
-import pixHandler from './apiService.js';
-import { form, btn, gallery, element, input } from './references.js';
+import { pixHandler } from './apiService.js';
+import { form, btn, gallery, element, input, load } from './references.js';
 
-form.addEventListener('submit', pixHandler);
+const option = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 1.0,
+};
+const observer = new IntersectionObserver(loadMore, option);
+
+const state = {
+  page: 1,
+  query: '',
+};
+form.addEventListener('submit', onSearch);
 input.addEventListener('input', loadImage);
-btn.addEventListener('click', pixHandler);
+btn.addEventListener('click', onLoadMore);
 gallery.addEventListener('click', openModal);
+load.addEventListener('click', loadMore);
+load.style.visibility = 'hidden';
+
+function onSearch(e) {
+  e.preventDefault();
+  state.page = 1;
+  state.query = e.currentTarget.elements.query.value.trim();
+  pixHandler(state.query, state.page).then(({ data: { hits } }) => {
+    gallery.innerHTML = card(hits);
+    handleButtonClick();
+    if (hits.length > 11) {
+      load.style.visibility = 'visible';
+    }
+    if (hits.length === 0) {
+      error({
+        text: 'No image!',
+        delay: 2000,
+      });
+    }
+  });
+  btn.setAttribute('disabled', 'disabled');
+}
+
+function onLoadMore() {
+  state.page = 1;
+  pixHandler(input.value, state.page).then(({ data: { hits } }) => {
+    gallery.innerHTML = card(hits);
+    handleButtonClick();
+    if (hits.length > 11) {
+      load.style.visibility = 'visible';
+    }
+    if (hits.length === 0) {
+      error({
+        text: 'No image!',
+        delay: 2000,
+      });
+    }
+  });
+  btn.setAttribute('disabled', 'disabled');
+}
+
+function loadMore() {
+  state.page += 1;
+  pixHandler(state.query, state.page).then(({ data: { hits } }) => {
+    gallery.insertAdjacentHTML('beforeend', card(hits));
+    handleButtonClick();
+    if (state.page === 2) {
+      observer.observe(load);
+    }
+    if (input.value === '') {
+      gallery.innerHTML = '';
+      alertImage();
+    }
+  });
+}
 
 function openModal(event) {
   event.preventDefault();
@@ -40,10 +105,6 @@ function alertImage() {
   });
 }
 
-function markup(image) {
-  gallery.insertAdjacentHTML('beforeend', card(image));
-}
-
 function loadImage() {
   if (input.value === '') {
     btn.setAttribute('disabled', 'disabled');
@@ -58,20 +119,6 @@ function loadImage() {
 function handleButtonClick() {
   element.scrollIntoView({
     behavior: 'smooth',
-    block: 'end',
+    block: 'center',
   });
 }
-
-function errorUsers(image) {
-  if (image.data.hits) {
-    markup(image.data.hits);
-  }
-  if (image.data.total === 0) {
-    error({
-      text: 'No image!',
-      delay: 2000,
-    });
-  }
-}
-
-export { errorUsers, handleButtonClick, loadImage, alertImage };
