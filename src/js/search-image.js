@@ -125,6 +125,6 @@ function loadImage() {
 function handleButtonClick() {
   element.scrollIntoView({
     behavior: 'smooth',
-    block: 'start',
+    block: 'center',
   });
 }

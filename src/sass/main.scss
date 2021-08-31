@@ -5,7 +5,7 @@ body {
 .div-search {
   display: flex;
   justify-content: center;
-  margin-top: 200px;
+  margin-top: 150px;
 }
 
 .div-form {
@@ -17,10 +17,10 @@ body {
 }
 
 .input-form {
-  width: 350px;
-  height: 50px;
+  width: 280px;
+  height: 40px;
 
-  font-size: 30px;
+  font-size: 20px;
 
   border-radius: 7px;
 
@@ -33,13 +33,14 @@ body {
 
 .gallery {
   display: grid;
-  grid-template-columns: 500px 500px 500px 500px 500px;
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
+  grid-template-columns: 375px 375px 375px 375px 375px;
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
 
   justify-content: center;
 
   margin-top: 50px;
+  margin-bottom: 50px;
 
   padding: 0;
 
@@ -62,7 +63,7 @@ body {
 .image {
   display: block;
   width: 100%;
-  height: 300px;
+  height: 250px;
   object-fit: cover;
 }
 
@@ -96,10 +97,10 @@ body {
 }
 
 .btn {
-  width: 160px;
-  height: 40px;
+  width: 100px;
+  height: 32px;
 
-  margin-left: 20px;
+  margin-left: 10px;
 
   cursor: pointer;
 
@@ -132,8 +133,8 @@ body {
 }
 
 .load {
-  width: 160px;
-  height: 40px;
+  width: 100px;
+  height: 32px;
 
   margin-left: auto;
   margin-right: auto;
