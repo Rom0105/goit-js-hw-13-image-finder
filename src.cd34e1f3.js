@@ -81,4 +81,4 @@ module.exports=require("./lib/axios");
 },{"@pnotify/core/dist/PNotify.js":"txz9","@pnotify/core/dist/BrightTheme.css":"clu1","../templates/card-image.hbs":"AXhu","basiclightbox":"BNjD","basiclightbox/dist/basicLightbox.min.css":"clu1","./apiService.js":"eQwa","./references.js":"oY80"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/search-image.js");
 },{"./sass/main.scss":"clu1","./js/search-image.js":"j3FQ"}]},{},["Focm"], null)
-//# sourceMappingURL=/goit-js-hw-13-image-finder/src.1c8467ba.js.map
+//# sourceMappingURL=/goit-js-hw-13-image-finder/src.cd34e1f3.js.map
